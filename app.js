@@ -62,9 +62,9 @@ const sessionOptions = {
   },
 };
 
-// app.get("/", (req, res) => {
-//   res.send("Root is working");
-// });
+app.get("/", (req, res) => {
+  res.render("root.ejs");
+});
 
 
 app.use(session(sessionOptions));
