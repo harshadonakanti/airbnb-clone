@@ -20,12 +20,9 @@ const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
 //let mongo_URL = "mongodb://127.0.0.1:27017/wanderLust";
-const dbUrl = process.env.ATLASDB_URL;
+ const dbUrl = process.env.ATLASDB_URL;
 async function main() {
-  await mongoose.connect(dbUrl,{
-    tls:true,
-    tlsInsecure:false,
-  });
+  await mongoose.connect(dbUrl);
 }
 
 main()
@@ -49,7 +46,7 @@ const store = MongoStore.create({
   touchAfter: 24 * 3600,
 });
 
-store.on("error", () => {
+store.on("error", (err) => {
   console.log("ERROR in MONGO SESSION STORE", err);
 });
 
