@@ -52,7 +52,7 @@ store.on("error", (err) => {
 
 const sessionOptions = {
   store,
-  secret: process.env.SECRET,
+  secret: process.env.SECRET || process.env.VALUE,
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -97,6 +97,8 @@ app.use((err, req, res, next) => {
   // res.status(statusCode).send(message);
 });
 
-app.listen(8080, () => {
-  console.log("listening to port");
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
 });
+
